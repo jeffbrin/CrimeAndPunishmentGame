@@ -8,6 +8,8 @@ public class PlayerAnimationControl : MonoBehaviour
     PlayerMovement playerMovement;
     public bool falling = false;
     public bool jumping = false;
+    public Vector2 boxColliderIdleScale;
+    public Vector2 boxColliderMovingScale;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,9 @@ public class PlayerAnimationControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // Correct for the change in height of the running vs idle animations
+        GetComponent<BoxCollider2D>().size = boxColliderMovingScale;
 
         if (playerMovement.grounded)
         {
@@ -39,6 +44,8 @@ public class PlayerAnimationControl : MonoBehaviour
             {
                 anim.Play("PlayerIdle");
                 Debug.Log("Idle");
+                // Correct for the change in height of the running vs idle animations
+                GetComponent<BoxCollider2D>().size = boxColliderIdleScale;
             }
         }
         if (!playerMovement.grounded && GetComponent<Rigidbody2D>().velocity.y < 0 && !falling)
