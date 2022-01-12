@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    public Camera cam;
     public int airControl = 4;
     public float maxSpeed;
     public bool grounded;
@@ -22,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     public float sprintingSpeedMultiplierAir = 1.5f;
 
     string lastMoveDirection = "";
+
+    Vector3 regularScale;
 
     // Input key constants stored here to be changed if desired
     [Header("KeyBinds")]
@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         initialVelocity = 2 * jumpHeight / (jumpLength / 2);
         gravity = -initialVelocity / (jumpLength / 2);
         rb.gravityScale = gravity / Physics2D.gravity.y;
+        regularScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -59,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
     // This obviously needs ground checks
     void Jump()
     {
+        GetComponent<PlayerAnimationControl>().Jump();
+
         // Calculate initial velocity and gravity
         initialVelocity = 2 * jumpHeight / (jumpLength / 2);
         gravity = -initialVelocity / (jumpLength / 2);
@@ -105,14 +108,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 //if we are on the ground, just apply the velocity we want
                 rb.velocity = new Vector2((Vector2.right * maxSpeed).x, rb.velocity.y);
-
             }
             else
             {
                 //in midair, add a bit of force so we keep the kinda midair speed stuff
                 rb.AddForce(Vector2.right * airControl);
-
             }
+
+            // Face right
+            transform.localScale = regularScale;
+
         }
         else if (Input.GetKey(leftKey) && rb.velocity.x > -maxSpeed && lastMoveDirection == "Left")
         {
@@ -127,6 +132,9 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector2.left * airControl);
             }
 
+            // Face left
+            transform.localScale = new Vector3(regularScale.x * -1, regularScale.y, regularScale.z);
+
         }
         else
         {
@@ -134,7 +142,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 //if grounded, use our own deacceleration, otherwise use unity's physic
                 rb.velocity = new Vector2((rb.velocity.x / deaccelertaion), rb.velocity.y);
-
             }
         }
     }

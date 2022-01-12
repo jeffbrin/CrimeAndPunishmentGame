@@ -8,6 +8,7 @@ public class TrackPlayerX : MonoBehaviour
     // It's needed since we can't parent the cam to the child if we want the cam tracking the way it is.
 
     Transform player;
+    public float distanceFromPlayerZ = 2;
 
     void Start()
     {
@@ -17,6 +18,6 @@ public class TrackPlayerX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        transform.position = new Vector3(player.transform.position.x, transform.position.y, -5);
     }
 }

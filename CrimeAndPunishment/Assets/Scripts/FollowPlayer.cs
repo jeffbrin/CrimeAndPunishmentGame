@@ -127,7 +127,10 @@ public class FollowPlayer : MonoBehaviour
         if ((this.transform.position.y > unparentUpperLimit || this.transform.position.y < unparentLowerLimit) && transform.parent.parent == null)
         {
             transform.parent.parent = player.transform;                                                 // Make the camera's parent's parent the player so the jittering stops
+            transform.parent.transform.localPosition = new Vector3(transform.parent.localPosition.x, transform.parent.localPosition.y, -10);
+            transform.localPosition= new Vector3(transform.localPosition.x, transform.localPosition.y, -10);
             normalizedYVelocityWhenParented = playerRb.velocity.y / Mathf.Abs(playerRb.velocity.y);     // Save the sign of the velocity so we can unparent when it changes.
+            Debug.Log("1");
         }
         // Check if the player's velocity changed since it was parented
         else if(playerRb.velocity.y / Mathf.Abs(playerRb.velocity.y) != normalizedYVelocityWhenParented)
@@ -140,6 +143,7 @@ public class FollowPlayer : MonoBehaviour
 
             //float targetPositionY = player.transform.position.y + positionToAdd.y;                                 
             this.transform.position += new Vector3(0, (player.transform.position.y + heightAbovePlayer + positionToAdd.y - this.transform.position.y) * Time.deltaTime * camSpeed);   //  Move the camera
+            Debug.Log("2");
         }
 
     }
