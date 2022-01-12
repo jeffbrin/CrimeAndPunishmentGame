@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField]
-    string targetScene, displayName;
+    string targetScene, displayName, comingFrom;
     bool playerInFront = false;
     TextMesh textMeshComponent;
+    
+    
 
     // Start is called before the first frame update
     void Start()
@@ -53,5 +55,10 @@ public class SceneChanger : MonoBehaviour
         {
             textMeshComponent.text = string.Empty;
         }
+    }
+
+    public string ComingFrom
+    {
+        get { return comingFrom; }
     }
 }
