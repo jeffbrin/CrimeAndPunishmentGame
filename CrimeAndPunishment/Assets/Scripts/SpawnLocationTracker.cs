@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnLocationTracker : MonoBehaviour
 {
 	static SpawnLocationTracker instance;
-	string previousScene;
+	string previousScene = "Default";
 
 	// make this a singleton
 	void Awake()
@@ -25,6 +26,28 @@ public class SpawnLocationTracker : MonoBehaviour
 
     private void Start()
     {
-        // Look for a SceneChanger with the ComingFrom property that matches the previous scene
+		// Add a function to call when a new scene is laded
+		SceneManager.sceneLoaded += OnSceneLoaded;
+		OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+    }
+
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+
+		SceneChanger[] sceneChangers = FindObjectsOfType<SceneChanger>();
+		foreach (SceneChanger sceneChanger in sceneChangers)
+        {
+			Debug.Log(sceneChanger.TargetScene);
+			if (sceneChanger.TargetScene == previousScene)
+            {
+				FindObjectOfType<PlayerMovement>().transform.position = sceneChanger.transform.position;
+				break;
+            }
+        }
+	}
+
+	public string PreviousScene
+    {
+		set { previousScene = value; }
     }
 }

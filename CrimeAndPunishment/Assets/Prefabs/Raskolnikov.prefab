@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   airControl: 4
-  maxSpeed: 10
+  maxSpeed: 7
   grounded: 0
   jumpHeight: 3
   jumpLength: 1

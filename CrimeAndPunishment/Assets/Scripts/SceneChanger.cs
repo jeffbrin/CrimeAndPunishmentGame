@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField]
-    string targetScene, displayName, comingFrom;
+    string targetScene, displayName;
     bool playerInFront = false;
     TextMesh textMeshComponent;
     
@@ -21,15 +21,16 @@ public class SceneChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerInFront && Input.GetKeyDown(KeyCode.UpArrow))
+        if (playerInFront && Input.GetKeyDown(KeyCode.W))
         {
+            FindObjectOfType<SpawnLocationTracker>().PreviousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(targetScene);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && targetScene != "Default")
         {
             ToggleDisplayName();
             playerInFront = true;
@@ -38,7 +39,7 @@ public class SceneChanger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && targetScene != "Default")
         {
             ToggleDisplayName();
             playerInFront = false;
@@ -49,7 +50,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (textMeshComponent.text == string.Empty)
         {
-            textMeshComponent.text = displayName;
+            textMeshComponent.text = $"{displayName} - [W] To Enter";
         }
         else
         {
@@ -57,8 +58,8 @@ public class SceneChanger : MonoBehaviour
         }
     }
 
-    public string ComingFrom
+   public string TargetScene
     {
-        get { return comingFrom; }
+        get { return targetScene; }
     }
 }

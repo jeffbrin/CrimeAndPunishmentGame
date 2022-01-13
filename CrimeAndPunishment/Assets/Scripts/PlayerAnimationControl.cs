@@ -32,18 +32,15 @@ public class PlayerAnimationControl : MonoBehaviour
                 if (Input.GetKey(playerMovement.sprintKey))
                 {
                     anim.Play("PlayerRun");
-                    Debug.Log("Run");
                 }
                 else
                 {
                     anim.Play("PlayerWalk");
-                    Debug.Log("Walk");
                 }
             }
             else
             {
                 anim.Play("PlayerIdle");
-                Debug.Log("Idle");
                 // Correct for the change in height of the running vs idle animations
                 GetComponent<BoxCollider2D>().size = boxColliderIdleScale;
             }
@@ -51,7 +48,6 @@ public class PlayerAnimationControl : MonoBehaviour
         if (!playerMovement.grounded && GetComponent<Rigidbody2D>().velocity.y < 0 && !falling)
         {
             anim.Play("PlayerFall");
-            Debug.Log("Fall");
             falling = true;
         }
 
@@ -66,6 +62,5 @@ public class PlayerAnimationControl : MonoBehaviour
         anim.gameObject.SetActive(false);
         anim.gameObject.SetActive(true);
         anim.Play("PlayerJump");
-        Debug.Log("Jump");
     }
 }

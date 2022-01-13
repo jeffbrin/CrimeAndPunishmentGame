@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Raskolnikov_House.unity
     guid: 4a2fbfd2f03bc5647ad38b07bd83057b
+  - enabled: 1
+    path: Assets/Scenes/SceneLoadingTests/Scene1.unity
+    guid: f4445f7a293790c4498f02d177acbb1c
+  - enabled: 1
+    path: Assets/Scenes/SceneLoadingTests/Scene2.unity
+    guid: 9935f476bd7494346b1afda66d0a72be
+  - enabled: 1
+    path: Assets/Scenes/SceneLoadingTests/Scene3.unity
+    guid: 70c7f5c31c080a84a871fe7b9566fd7e
   m_configObjects: {}
