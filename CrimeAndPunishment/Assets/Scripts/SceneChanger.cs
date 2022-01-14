@@ -23,6 +23,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (playerInFront && Input.GetKeyDown(KeyCode.W))
         {
+            FindObjectOfType<GameManager>().SceneChange();
             FindObjectOfType<SpawnLocationTracker>().PreviousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(targetScene);
         }

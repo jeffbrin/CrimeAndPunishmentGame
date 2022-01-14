@@ -7,6 +7,7 @@ public class SpawnLocationTracker : MonoBehaviour
 {
 	static SpawnLocationTracker instance;
 	string previousScene = "Default";
+	string raskolnikovMessage;
 
 	// make this a singleton
 	void Awake()
@@ -44,10 +45,19 @@ public class SpawnLocationTracker : MonoBehaviour
 				break;
             }
         }
+
+		// Display a messageon rasklnikov when the scene loads
+		FindObjectOfType<PlayerUI>().ShowText(raskolnikovMessage);
+		raskolnikovMessage = string.Empty;
 	}
 
 	public string PreviousScene
     {
 		set { previousScene = value; }
+    }
+
+	public void SetRaskolnikovMessage(string message)
+    {
+		raskolnikovMessage = message;
     }
 }

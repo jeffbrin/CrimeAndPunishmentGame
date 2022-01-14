@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    // Movement related stuff
     public int airControl = 4;
     public float maxSpeed;
     public bool grounded;
@@ -175,6 +177,8 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, -terminalVelocityY);
         }
     }
+
+    
 
     #region Properties
 

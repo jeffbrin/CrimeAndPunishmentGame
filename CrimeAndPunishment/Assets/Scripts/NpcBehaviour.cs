@@ -54,15 +54,18 @@ public class NpcBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.position.x > transform.position.x && movingRight)
+        if (collision.gameObject.layer != 6)
         {
-            movingRight = false;
-            transform.localScale = new Vector3(startScale.x * -1, startScale.y, startScale.z);
-        }
-        else if (collision.transform.position.x < transform.position.x && !movingRight)
-        {
-            movingRight = true;
-            transform.localScale = startScale;
+            if (collision.transform.position.x > transform.position.x && movingRight)
+            {
+                movingRight = false;
+                transform.localScale = new Vector3(startScale.x * -1, startScale.y, startScale.z);
+            }
+            else if (collision.transform.position.x < transform.position.x && !movingRight)
+            {
+                movingRight = true;
+                transform.localScale = startScale;
+            }
         }
     }
 }
