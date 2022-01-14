@@ -94,6 +94,8 @@ public class FollowPlayer : MonoBehaviour
         float timeSinceXChange = Time.time - velXChangeTime;
         percentOfTimeToMaxSpeed = timeSinceXChange / timeToMaxCamSpeed;
         float dirVector = playerRb.velocity.x / player.GetComponent<PlayerMovement>().MaxSpeed;     // Find the sign of the velocity
+        //float dirVector = playerRb.velocity.x / Mathf.Abs(playerRb.velocity.x);     // Find the sign of the velocity
+
 
         positionToAdd = new Vector2(dirVector * camLead, 0);                                        // Find the vector 2 to add to the current position
         targetPositionX = player.transform.position.x + positionToAdd.x;                            // Store the position to move to on the x axis
@@ -107,6 +109,7 @@ public class FollowPlayer : MonoBehaviour
         // Check if the camera is already where it should be
         if (targetPositionX != this.transform.position.x)
         {
+            Debug.Log("1");
             this.transform.position += new Vector3(percentOfTimeToMaxSpeed * (targetPositionX - this.transform.position.x) * Time.deltaTime * camSpeed, 0);   // Move towards the target position
         }
     }

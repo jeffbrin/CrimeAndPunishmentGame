@@ -116,7 +116,18 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Face right
-            transform.localScale = regularScale;
+            try
+            {
+                GameObject camera = GetComponentInChildren<Camera>().gameObject;
+                Transform XTracker = GetComponentInChildren<TrackPlayerX>().transform;
+                XTracker.parent = null;
+                transform.localScale = regularScale;
+                XTracker.parent = transform;
+            }
+            catch
+            {
+                transform.localScale = regularScale;
+            }
 
         }
         else if (Input.GetKey(leftKey) && rb.velocity.x > -maxSpeed && lastMoveDirection == "Left")
@@ -133,7 +144,18 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Face left
-            transform.localScale = new Vector3(regularScale.x * -1, regularScale.y, regularScale.z);
+            try
+            {
+                GameObject camera = GetComponentInChildren<Camera>().gameObject;
+                Transform XTracker = GetComponentInChildren<TrackPlayerX>().transform;
+                XTracker.parent = null;
+                transform.localScale = new Vector3(regularScale.x * -1, regularScale.y, regularScale.z);
+                XTracker.parent = transform;
+            }
+            catch
+            {
+                transform.localScale = new Vector3(regularScale.x * -1, regularScale.y, regularScale.z);
+            }
 
         }
         else

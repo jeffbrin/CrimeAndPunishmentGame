@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e677115cecc0944acfc6ecaf75b87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airControl: 4
+  airControl: 10
   maxSpeed: 7
   grounded: 0
   jumpHeight: 3
