@@ -109,7 +109,6 @@ public class FollowPlayer : MonoBehaviour
         // Check if the camera is already where it should be
         if (targetPositionX != this.transform.position.x)
         {
-            Debug.Log("1");
             this.transform.position += new Vector3(percentOfTimeToMaxSpeed * (targetPositionX - this.transform.position.x) * Time.deltaTime * camSpeed, 0);   // Move towards the target position
         }
     }

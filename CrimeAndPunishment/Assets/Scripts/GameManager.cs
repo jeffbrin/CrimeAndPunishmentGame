@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     static GameManager instance;
 	public PlayerLogic lastRaskolnikovState = null;
+	int murders = 0;
 
 	void Awake()
 	{
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
 		if (lastRaskolnikovState != null) {
 			PlayerLogic raskolnikovState = FindObjectOfType<PlayerLogic>();
 			raskolnikovState = lastRaskolnikovState;
+			murders = 0;
 		}
     }
 
@@ -38,5 +40,9 @@ public class GameManager : MonoBehaviour
 		lastRaskolnikovState = FindObjectOfType<PlayerLogic>();
     }
 
+	public void IndicateDeath()
+    {
+		murders += 1;
+    }
 
 }

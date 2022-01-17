@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NPC
   - Collectible
+  - Tracker
   layers:
   - Default
   - TransparentFX

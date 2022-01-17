@@ -6,6 +6,7 @@ public class PlayerLogic : MonoBehaviour
 {
 
     public bool hasAxe;
+    public bool pawnLadyInRange;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class PlayerLogic : MonoBehaviour
     {
         if (collision.gameObject.tag == "NPC")
         {
-            FindObjectOfType<GameManager>().ResetStage("Hitting people will arouse suspicion...");
+            FindObjectOfType<GameManager>().ResetStage("Bumping into people will arouse suspicion...");
         }
     }
 
@@ -36,4 +37,17 @@ public class PlayerLogic : MonoBehaviour
                 break;
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.GetComponent<PawnBrokerBehaviour>() != null && Input.GetKeyDown(GetComponent<PlayerAnimationControl>().attackKey))
+        {
+            collision.GetComponent<PawnBrokerBehaviour>().Die();
+        }
+        else if (collision.gameObject != null && collision.gameObject.tag == "NPC")
+        {
+            FindObjectOfType<GameManager>().ResetStage("Attacking people is pretty suspicious behaviour...");
+        }
+    }
+
 }
