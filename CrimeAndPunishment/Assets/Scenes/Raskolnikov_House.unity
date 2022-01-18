@@ -29891,6 +29891,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2350529472373350499, guid: b71d4ddcb56fc0a48b1db080e0600269, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8510466476654000112, guid: b71d4ddcb56fc0a48b1db080e0600269, type: 3}
       propertyPath: boxColliderIdleScale.y
       value: 0.46

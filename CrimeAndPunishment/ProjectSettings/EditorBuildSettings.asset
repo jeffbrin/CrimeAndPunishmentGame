@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SceneLoadingTests/Scene1.unity
     guid: f4445f7a293790c4498f02d177acbb1c
+  - enabled: 1
+    path: Assets/Scenes/Pawnbroker_House.unity
+    guid: 1ecabf43e35c8ed449bee0e970e64dfd
   m_configObjects: {}
