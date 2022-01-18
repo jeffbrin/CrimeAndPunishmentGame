@@ -76,7 +76,7 @@ public class PlayerAnimationControl : MonoBehaviour
 
     public void Attack()
     {
-        Debug.Log("Attack");
+        GetComponent<PlayerLogic>().Attack();
         anim.gameObject.SetActive(false);
         anim.gameObject.SetActive(true);
         anim.Play("PlayerAttack");

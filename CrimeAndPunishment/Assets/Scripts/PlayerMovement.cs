@@ -124,11 +124,13 @@ public class PlayerMovement : MonoBehaviour
                 Transform XTracker = GetComponentInChildren<TrackPlayerX>().transform;
                 XTracker.parent = null;
                 transform.localScale = regularScale;
+                GetComponentInChildren<TextMesh>().transform.localScale = new Vector3(0.2f, 0.2f, 1);
                 XTracker.parent = transform;
             }
             catch
             {
                 transform.localScale = regularScale;
+                GetComponentInChildren<TextMesh>().transform.localScale = new Vector3(0.2f, 0.2f, 1);
             }
 
         }
@@ -152,11 +154,13 @@ public class PlayerMovement : MonoBehaviour
                 Transform XTracker = GetComponentInChildren<TrackPlayerX>().transform;
                 XTracker.parent = null;
                 transform.localScale = new Vector3(regularScale.x * -1, regularScale.y, regularScale.z);
+                GetComponentInChildren<TextMesh>().transform.localScale = new Vector3(-0.2f, 0.2f, 1);
                 XTracker.parent = transform;
             }
             catch
             {
                 transform.localScale = new Vector3(regularScale.x * -1, regularScale.y, regularScale.z);
+                GetComponentInChildren<TextMesh>().transform.localScale = new Vector3(-0.2f, 0.2f, 1);
             }
 
         }

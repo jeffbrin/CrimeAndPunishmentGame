@@ -11,6 +11,7 @@ public class CollectibleItem : MonoBehaviour
     bool rising = true;
     [SerializeField]
     string name;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -33,12 +34,20 @@ public class CollectibleItem : MonoBehaviour
             if (transform.position.y <= startingY - (double)hoverRadius / 100)
                 rising = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.E) && player != null)
+        {
+            Debug.Log("Collect");
+            player.gameObject.GetComponent<PlayerLogic>().GetItem(name);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
+            player = collision.gameObject;
             GetComponent<SpriteRenderer>().color = Color.grey;
             GetComponentInChildren<TextMesh>().text = name + " [E] to pick up.";
         }
@@ -48,22 +57,12 @@ public class CollectibleItem : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            player = null;
             GetComponent<SpriteRenderer>().color = Color.white;
             GetComponentInChildren<TextMesh>().text = string.Empty;
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                collision.gameObject.GetComponent<PlayerLogic>().GetItem(name);
-                Destroy(gameObject);
-            }
-        }
-    }
 
 
 }

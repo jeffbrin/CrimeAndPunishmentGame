@@ -6,7 +6,8 @@ public class PlayerLogic : MonoBehaviour
 {
 
     public bool hasAxe;
-    public bool pawnLadyInRange;
+    public GameObject pawnBroker;
+    public bool npcInAttackRange;
 
     // Start is called before the first frame update
     void Start()
@@ -16,8 +17,7 @@ public class PlayerLogic : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    { 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -26,6 +26,7 @@ public class PlayerLogic : MonoBehaviour
         {
             FindObjectOfType<GameManager>().ResetStage("Bumping into people will arouse suspicion...");
         }
+
     }
 
     public void GetItem(string itemName)
@@ -38,14 +39,43 @@ public class PlayerLogic : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<PawnBrokerBehaviour>() != null && Input.GetKeyDown(GetComponent<PlayerAnimationControl>().attackKey))
+        if (collision.GetComponent<PawnBrokerBehaviour>() != null)
         {
-            collision.GetComponent<PawnBrokerBehaviour>().Die();
+            pawnBroker = null;
         }
-        else if (collision.gameObject != null && collision.gameObject.tag == "NPC")
+        else if (collision.gameObject.tag == "NPC")
         {
+            npcInAttackRange = false;
+        }
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<PawnBrokerBehaviour>() != null)
+        {
+            pawnBroker = collision.gameObject;
+        }
+        else if (collision.gameObject.tag == "NPC")
+        {
+            npcInAttackRange = true;
+        }
+    }
+
+    public void Attack()
+    {
+        Debug.Log(npcInAttackRange);
+        if (pawnBroker != null)
+        {
+            pawnBroker.GetComponent<PawnBrokerBehaviour>().Die();
+            Debug.Log("Kill");
+        }
+        if (npcInAttackRange)
+        {
+            Debug.Log("YUHYUH");
             FindObjectOfType<GameManager>().ResetStage("Attacking people is pretty suspicious behaviour...");
         }
     }
