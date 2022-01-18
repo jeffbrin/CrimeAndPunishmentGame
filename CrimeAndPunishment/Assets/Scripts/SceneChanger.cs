@@ -21,6 +21,7 @@ public class SceneChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ToggleDisplayName();
         if (playerInFront && Input.GetKeyDown(KeyCode.W))
         {
             FindObjectOfType<GameManager>().SceneChange();
@@ -29,11 +30,10 @@ public class SceneChanger : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" && targetScene != "Default")
         {
-            ToggleDisplayName();
             playerInFront = true;
         }
     }
@@ -42,14 +42,13 @@ public class SceneChanger : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && targetScene != "Default")
         {
-            ToggleDisplayName();
             playerInFront = false;
         }
     }
 
     private void ToggleDisplayName()
     {
-        if (textMeshComponent.text == string.Empty)
+        if (playerInFront)
         {
             textMeshComponent.text = $"{displayName} - [W] To Enter";
         }
