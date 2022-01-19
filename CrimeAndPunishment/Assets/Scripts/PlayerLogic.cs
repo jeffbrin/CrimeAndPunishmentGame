@@ -9,7 +9,13 @@ public class PlayerLogic : MonoBehaviour
     public GameObject pawnBroker;
     public bool npcInAttackRange;
 
-    // Start is called before the first frame update
+    public PlayerLogic(bool hasAxe)
+    {
+        this.hasAxe = hasAxe;
+    }
+
+
+   // Start is called before the first frame update
     void Start()
     {
         

@@ -41,6 +41,8 @@ public class PawnBrokerBehaviour : MonoBehaviour
             float direction = targetPosition.position.x + 0.1 < transform.position.x ? -1 : 
                               targetPosition.position.x - 0.1 > transform.position.x ? 1 : 0;
 
+            GetComponentInChildren<TextMesh>().transform.localScale = new Vector3(transform.localScale.x < 0 ? -1 : 1,  1, 1);
+
             // Change facing
             if (direction != 0)
             {

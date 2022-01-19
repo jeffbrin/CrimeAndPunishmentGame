@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SpawnLocationTracker : MonoBehaviour
 {
 	static SpawnLocationTracker instance;
-	string previousScene = "Default";
+	public string previousScene = "Default";
 	string raskolnikovMessage;
 
 	// make this a singleton
@@ -46,10 +46,18 @@ public class SpawnLocationTracker : MonoBehaviour
             }
         }
 
-		// Display a messageon rasklnikov when the scene loads
+		// Display a message on rasklnikov when the scene loads
 		FindObjectOfType<PlayerUI>().ShowText(raskolnikovMessage);
 		raskolnikovMessage = string.Empty;
-	}
+		PlayerLogic player = GameObject.FindWithTag("Player").GetComponent<PlayerLogic>();
+
+        //if (FindObjectOfType<GameManager>().lastRaskolnikovState != null)
+        //{
+        Debug.Log($"Setting {FindObjectOfType<GameManager>().raskolnikovHasAxe}");
+        FindObjectOfType<PlayerLogic>().hasAxe = FindObjectOfType<GameManager>().raskolnikovHasAxe;
+        Debug.Log($"Setting {player.hasAxe} 2");
+        //}
+    }
 
 	public string PreviousScene
     {
