@@ -18,7 +18,8 @@ public class MoneyCollection : MonoBehaviour
                 Debug.Log(pbb);
                 pbb.gameObject.SetActive(true);
             }
-            Destroy(gameObject);
+            text = "Get away unseen.";
+            GetComponentInChildren<TextMesh>().text = text;
         }
     }
 

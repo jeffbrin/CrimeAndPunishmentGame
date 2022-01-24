@@ -56,6 +56,12 @@ public class SpawnLocationTracker : MonoBehaviour
         Debug.Log($"Setting {FindObjectOfType<GameManager>().raskolnikovHasAxe}");
         FindObjectOfType<PlayerLogic>().hasAxe = FindObjectOfType<GameManager>().raskolnikovHasAxe;
         Debug.Log($"Setting {player.hasAxe} 2");
+		if (FindObjectOfType<PlayerLogic>().hasAxe)
+        {
+			CollectibleItem axe = FindObjectOfType<CollectibleItem>();
+			if (axe != null)
+				Destroy(axe.gameObject);
+        }
         //}
     }
 

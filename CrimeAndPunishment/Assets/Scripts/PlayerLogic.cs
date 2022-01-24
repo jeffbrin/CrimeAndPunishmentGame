@@ -41,6 +41,7 @@ public class PlayerLogic : MonoBehaviour
         {
             case "Axe":
                 hasAxe = true;
+                GetComponent<PlayerUI>().ShowText("[F] to use axe.");
                 break;
         }
     }

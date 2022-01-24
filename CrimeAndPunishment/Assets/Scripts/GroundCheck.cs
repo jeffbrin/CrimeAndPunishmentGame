@@ -14,11 +14,13 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        playerMovement.grounded = true;
+        if(!other.isTrigger)
+            playerMovement.grounded = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        playerMovement.grounded = false;
+        if(!other.isTrigger)
+            playerMovement.grounded = false;
     }
 }

@@ -11,6 +11,7 @@ public class PawnBrokerBehaviour : MonoBehaviour
     int speed;
     [SerializeField]
     string name;
+    public bool isLizaveta = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,14 @@ public class PawnBrokerBehaviour : MonoBehaviour
         GetComponent<PawnBrokerBehaviour>().enabled = false;
         GetComponent<BoxCollider2D>().size = new Vector3(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y / 2.5f);
         FindObjectOfType<GameManager>().IndicateDeath();
+
+        // Set the inspector dudes to be active when lizaveta dies
+        if (isLizaveta)
+        {
+            foreach(InspectorGuy ig in Resources.FindObjectsOfTypeAll<InspectorGuy>())
+                ig.gameObject.SetActive(true);
+        }
+
     }
 
     void FollowPath()
