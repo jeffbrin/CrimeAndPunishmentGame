@@ -31,15 +31,14 @@ public class AlyonaConvo : MonoBehaviour
         "I can't waste one more moment! \n Press [F] to kill her."
     };
     public bool destroyOnExit;
+    bool isTalking;
 
-    private IEnumerator OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && !isTalking)
         {
-            foreach(string s in text){
-                GetComponentInChildren<TextMesh>().text = s;
-                yield return new WaitForSeconds(2);
-            }            
+            isTalking = true;
+            StartCoroutine("StartConverstation");
         }
     }
 
@@ -50,6 +49,15 @@ public class AlyonaConvo : MonoBehaviour
             GetComponentInChildren<TextMesh>().text = string.Empty;
             if (destroyOnExit)
                 Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator StartConverstation()
+    {
+        foreach (string s in text)
+        {
+            GetComponentInChildren<TextMesh>().text = s;
+            yield return new WaitForSeconds(2);
         }
     }
 }
