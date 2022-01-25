@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	public bool raskolnikovHasAxe;
 	int murders = 0;
 	bool hasMoney = false;
+	List<string> loadedScenes = new List<string>();
 
 	void Awake()
 	{
@@ -71,5 +72,31 @@ public class GameManager : MonoBehaviour
 		Image panel = GameObject.FindWithTag("Panel").GetComponent<Image>();
 		panel.color = Color.black;
 		panel.GetComponentInChildren<TextMeshProUGUI>().text = message;
+    }
+
+	public void RemoveThoughtTexts()
+    {
+		// If this scene has been visited and it's not the last scene to be visited
+		if (loadedScenes.Contains(SceneManager.GetActiveScene().name) && loadedScenes[loadedScenes.Count - 1] != SceneManager.GetActiveScene().name)
+		{
+			TextPopup[] texts = FindObjectsOfType<TextPopup>();
+			foreach (TextPopup text in texts)
+				Destroy(text.gameObject);
+		}
+		else if (SceneManager.GetActiveScene().name == "Pawnbroker_House" && murders > 0)
+        {
+			TextPopup[] texts = FindObjectsOfType<TextPopup>();
+			foreach (TextPopup text in texts)
+				Destroy(text.gameObject);
+			foreach (PawnBrokerBehaviour pb in FindObjectsOfType<PawnBrokerBehaviour>())
+				Destroy(pb.gameObject);
+            foreach(MoneyCollection mc in FindObjectsOfType<MoneyCollection>())
+				Destroy(mc.gameObject);
+			Destroy(FindObjectOfType<AlyonaConvo>().gameObject);
+			loadedScenes.Add(SceneManager.GetActiveScene().name);
+		}
+		else
+			loadedScenes.Add(SceneManager.GetActiveScene().name);
+
     }
 }

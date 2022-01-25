@@ -33,10 +33,13 @@ public class PlayerUI : MonoBehaviour
     IEnumerator RemoveMessageText(int wait)
     {
         string text = messageText.text;
+        Debug.Log("text: " + text);
         yield return new WaitForSeconds(wait);
         // Remove the text if it hasn't changed 
+        Debug.Log("messageText " + messageText.text + " == text " + text);
         if (messageText.text == text)
             messageText.text = string.Empty;
+        Debug.Log("messageText: " + messageText.text);
         StopCoroutine("RemoveMessageText");
     }
 }
