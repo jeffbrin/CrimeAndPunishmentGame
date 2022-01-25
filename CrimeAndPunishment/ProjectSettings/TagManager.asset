@@ -8,6 +8,7 @@ TagManager:
   - Collectible
   - Tracker
   - Panel
+  - DelText
   layers:
   - Default
   - TransparentFX

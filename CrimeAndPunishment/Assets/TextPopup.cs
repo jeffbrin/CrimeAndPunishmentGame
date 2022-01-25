@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TextPopup : MonoBehaviour
 {
+    [TextArea]
     public string text;
-    public KeyCode buttonToDestroy;
     public bool destroyOnExit;
+    public KeyCode buttonToDestroy;
+    
 
     private void Update()
     {

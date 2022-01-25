@@ -10,7 +10,6 @@ public class SceneChanger : MonoBehaviour
     bool playerInFront = false;
     TextMesh textMeshComponent;
     
-    
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +22,7 @@ public class SceneChanger : MonoBehaviour
     {
         ToggleDisplayName();
         if (playerInFront && Input.GetKeyDown(KeyCode.W))
-        {
+        {       
             FindObjectOfType<GameManager>().SceneChange();
             FindObjectOfType<SpawnLocationTracker>().PreviousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(targetScene);
