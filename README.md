@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://jeffbrin.github.io/CrimeAndPunishmentGame/">
-    <img width="750" src="https://user-images.githubusercontent.com/65859589/203900036-fb8fd4ad-e88d-48c2-bc86-83e80b51e92f.png">
+    <img width="750" src="https://raw.githubusercontent.com/jeffbrin/CrimeAndPunishmentGame/main/Images/hero.png">
   </a>
   <br>
 </div>
